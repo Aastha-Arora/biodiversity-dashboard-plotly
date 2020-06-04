@@ -1,5 +1,3 @@
-const dropdownMenu = d3.select("#selDataset")
-const metadata = d3.select("#sample-metadata")
 let data;
 
 function buildDefaultBar() {
@@ -18,20 +16,20 @@ function buildDefaultBar() {
         orientation: "h",
         marker: {
             color: "sandybrown",
-        },
-        
-    }
+        }, 
+    };
 
     let barLayout = {
         title: "Top 10 microbial species (OTUs)",
-    }
+    };
 
     Plotly.newPlot("bar",[barTrace], barLayout);
 
     // Displaying the metadata for sample 0 (subject id: 940)
     Object.entries(data.metadata[0]).forEach(([key,value]) => {
-        metadata.append("h6").text(`${key.toUpperCase()}: ${value}`)
-    })
+        d3.select("#sample-metadata").append("h6")
+        .text(`${key.toUpperCase()}: ${value}`)
+    });
 }
 
 function buildDefaultBubble() {
@@ -63,6 +61,7 @@ function buildDefaultBubble() {
 
 
 function subjectIdChange() {
+    const dropdownMenu = d3.select("#selDataset");
     let id = dropdownMenu.property("value");
     let index = data.names.indexOf(id);
     // console.log(`Displaying results for Subject ID: ${id} at index ${index}`)
@@ -89,9 +88,10 @@ function buildBar(index) {
     Plotly.restyle("bar", update)
 
     // Updating the sample metadata i.e., an individual's demographic information
-    metadata.html("");
+    d3.select("#sample-metadata").html("");
     Object.entries(data.metadata[index]).forEach(([key,value]) => {
-        metadata.append("h6").text(`${key.toUpperCase()}: ${value}`)
+        d3.select("#sample-metadata").append("h6")
+        .text(`${key.toUpperCase()}: ${value}`)
     });
 }
 
@@ -111,7 +111,6 @@ function buildBubble(index) {
 
     Plotly.restyle("bubble", updateTrace);
     Plotly.relayout("bubble", updateLayout);
-
 }
 
 function init() {
@@ -120,7 +119,9 @@ function init() {
         data = allData;
         
         // Creating dropdown options to display all subject ids
+        const dropdownMenu = d3.select("#selDataset");
         let subjectId = allData.names;
+
         subjectId.forEach(id => {
             dropdownMenu.append("option").text(id)
         });

@@ -25,9 +25,11 @@ function buildDefaultBar() {
 
     Plotly.newPlot("bar",[barTrace], barLayout);
 
+    const displayMetadata = d3.select("#sample-metadata");
+
     // Displaying the metadata for sample 0 (subject id: 940)
     Object.entries(data.metadata[0]).forEach(([key,value]) => {
-        d3.select("#sample-metadata").append("h6")
+        displayMetadata.append("h6")
         .text(`${key.toUpperCase()}: ${value}`)
     });
 }
@@ -87,10 +89,12 @@ function buildBar(index) {
 
     Plotly.restyle("bar", update)
 
+    const displayMetadata = d3.select("#sample-metadata");
+
     // Updating the sample metadata i.e., an individual's demographic information
     d3.select("#sample-metadata").html("");
     Object.entries(data.metadata[index]).forEach(([key,value]) => {
-        d3.select("#sample-metadata").append("h6")
+        displayMetadata.append("h6")
         .text(`${key.toUpperCase()}: ${value}`)
     });
 }

@@ -1,6 +1,7 @@
 ## Interactive visualizations and dashboard using Plotly
 Link to the dashboard:
-https://aastha-arora.github.io/plotly-dashboard/
+https://aastha-arora.github.io/plotly-dashboard/ 
+(Hosted on GitHub pages)
 
 ### Dataset
 [Belly Button Biodiversity dataset](http://robdunnlab.com/projects/belly-button-biodiversity/)

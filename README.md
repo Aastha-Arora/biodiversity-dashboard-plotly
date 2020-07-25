@@ -1,5 +1,4 @@
-# plotly-dashboard
-
+# Interactive visualizations and dashboard using Plotly
 Link to the dashboard:
 https://aastha-arora.github.io/plotly-dashboard/
 
